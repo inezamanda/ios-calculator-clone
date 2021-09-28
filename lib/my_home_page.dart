@@ -18,59 +18,22 @@ class _IosCalculatorState extends State<IosCalculator> {
   dynamic opr = '';
   dynamic preOpr = '';
 
-  Widget btn(btnText) {
+  Widget btn(btnText, Color color) {
     return Container(
         padding: EdgeInsets.only(bottom: 10.0),
-        child: ElevatedButton (
-            onPressed: (){},
+        child: MaterialButton (
+            onPressed: (){
+              calculation(btnText);
+            },
             child: Text(btnText,
               style: TextStyle(
-                  fontSize: 30
+                  fontSize: 30,
+                  color: Colors.white,
               ),
             ),
-            style: ElevatedButton.styleFrom(
-                primary: Color(0xff333333),
-                padding: EdgeInsets.all(22.0),
-                shape: CircleBorder()
-            )
-        )
-    );
-  }
-
-  Widget btnTop(btnText) {
-    return Container(
-        padding: EdgeInsets.only(bottom: 10.0),
-        child: ElevatedButton (
-            onPressed: (){},
-            child: Text(btnText,
-              style: TextStyle(
-                  fontSize: 30
-              ),
-            ),
-            style: ElevatedButton.styleFrom(
-                primary: Color(0xffa5a5a5),
-                padding: EdgeInsets.all(22.0),
-                shape: CircleBorder()
-            )
-        )
-    );
-  }
-
-  Widget btnRight(btnText) {
-    return Container(
-        padding: EdgeInsets.only(bottom: 10.0),
-        child: ElevatedButton (
-            onPressed: (){},
-            child: Text(btnText,
-              style: TextStyle(
-                  fontSize: 30
-              ),
-            ),
-            style: ElevatedButton.styleFrom(
-                primary: Colors.orange,
-                padding: EdgeInsets.all(22.0),
-                shape: CircleBorder()
-            )
+            color: color,
+            padding: EdgeInsets.all(22.0),
+            shape: CircleBorder()
         )
     );
   }
@@ -79,7 +42,9 @@ class _IosCalculatorState extends State<IosCalculator> {
     return Container(
       padding: EdgeInsets.only(bottom: 10.0),
       child: ElevatedButton(
-          onPressed: (){},
+          onPressed: (){
+            calculation(btnText);
+          },
           child: Text(btnText,
               style: TextStyle(
                   fontSize: 30.0
@@ -94,9 +59,8 @@ class _IosCalculatorState extends State<IosCalculator> {
     );
   }
 
-  @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return new Scaffold(
       appBar: null,
       backgroundColor: Colors.black,
       body: Container(
@@ -104,64 +68,72 @@ class _IosCalculatorState extends State<IosCalculator> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
-            Row(children: [
-              Expanded(
-                child: Text('0',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 60.0,
+            Row(
+              children: [
+                Expanded(
+                  child: Text(
+                    text,
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 60.0,
+                    ),
+                    textAlign: TextAlign.right,
+                    maxLines: 1,
                   ),
-                  textAlign: TextAlign.right,
-                  maxLines: 1,
-                ),
-              )
-            ],
+                )
+              ],
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                btnTop('AC'),
-                btnTop('+/-'),
-                btnTop('%'),
-                btnRight('/'),
+                btn('C', Color(0xffa5a5a5)), // AARRGGBB
+                btn('+/-', Color(0xffa5a5a5)),
+                btn('%', Color(0xffa5a5a5)),
+                btn('/', Colors.orange),
               ],),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                btn('7'),
-                btn('8'),
-                btn('9'),
-                btnRight('x'),
-              ],),
+                btn('7', Color(0xff333333)),
+                btn('8', Color(0xff333333)),
+                btn('9', Color(0xff333333)),
+                btn('x', Colors.orange),
+              ],
+            ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                btn('4'),
-                btn('5'),
-                btn('6'),
-                btnRight('-'),
-              ],),
+                btn('4', Color(0xff333333)),
+                btn('5', Color(0xff333333)),
+                btn('6', Color(0xff333333)),
+                btn('-', Colors.orange),
+              ],
+            ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                btn('1'),
-                btn('2'),
-                btn('3'),
-                btnRight('+'),
-              ],),
+                btn('1', Color(0xff333333)),
+                btn('2', Color(0xff333333)),
+                btn('3', Color(0xff333333)),
+                btn('+', Colors.orange),
+              ],
+            ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 btnZero('0'),
-                btn('.'),
-                btnRight('='),
+                btn('.', Color(0xff333333)),
+                btn('=', Colors.orange),
               ],
             ),
           ],
         ),
       ),
     );
-  }
+
+  } // end of state class
+
+
 
   void calculation(btnText) {
     if(btnText  == 'C') {
@@ -215,25 +187,21 @@ class _IosCalculatorState extends State<IosCalculator> {
       }
       finalResult = result;
     }
-
     else if(btnText == '+/-') {
       result.toString().startsWith('-') ? result = result.toString().substring(1): result = '-'+result.toString();
       finalResult = result;
 
     }
-
     else {
       result = result + btnText;
       finalResult = result;
     }
-
 
     setState(() {
       text = finalResult;
     });
 
   }
-
 
   String add() {
     result = (numOne + numTwo).toString();
@@ -256,7 +224,6 @@ class _IosCalculatorState extends State<IosCalculator> {
     numOne = double.parse(result);
     return doesContainDecimal(result);
   }
-
 
   String doesContainDecimal(dynamic result) {
 
