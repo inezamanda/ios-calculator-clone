@@ -130,10 +130,7 @@ class _IosCalculatorState extends State<IosCalculator> {
         ),
       ),
     );
-
-  } // end of state class
-
-
+  }
 
   void calculation(btnText) {
     if(btnText  == 'C') {
@@ -200,7 +197,6 @@ class _IosCalculatorState extends State<IosCalculator> {
     setState(() {
       text = finalResult;
     });
-
   }
 
   String add() {
@@ -226,7 +222,6 @@ class _IosCalculatorState extends State<IosCalculator> {
   }
 
   String doesContainDecimal(dynamic result) {
-
     if(result.toString().contains('.')) {
       List<String> splitDecimal = result.toString().split('.');
       if(!(int.parse(splitDecimal[1]) > 0))
