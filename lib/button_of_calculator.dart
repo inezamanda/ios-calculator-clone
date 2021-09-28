@@ -6,11 +6,13 @@ class ButtonOfCalculator extends StatelessWidget {
   // symbol ? => optional
   final String text;
   final Color? color;
+  final Color? txtColor;
   final EdgeInsets? edgeInsets;
   final dynamic? shape;
   const ButtonOfCalculator({
         required this.text,
         this.color,
+        this.txtColor,
         this.edgeInsets,
         this.shape});
   // {} -> bisa melakukan set sebuah attribute optional atau required
@@ -27,7 +29,7 @@ class ButtonOfCalculator extends StatelessWidget {
             child: Text(text,
               style: TextStyle(
                 fontSize: 30,
-                color: Colors.white,
+                color: txtColor ?? Colors.white,
               ),
             ),
             color: color ?? Color(0xff333333),

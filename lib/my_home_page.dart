@@ -8,6 +8,35 @@ class IosCalculator extends StatefulWidget {
   _IosCalculatorState createState() => _IosCalculatorState();
 }
 
+Row keyPadFun(List<String> num) {
+  return Row(
+    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+    children: 
+      List.generate(num.length, (index) => _buttonOfCalculatorBuilder(num[index]))
+  );
+}
+
+Column keyPad() {
+  List data = [
+    ['AC', '+/-', '%', '/'],
+    ['7', '8', '9', 'x'],
+    ['4', '5', '6', '-'],
+    ['1', '2', '3', '+'],
+    ['0', '.', '='],
+  ];
+
+  return Column(
+    children: List.generate(
+      data.length,
+      (index) => keyPadFun(data[index]),
+    )
+  );
+}
+
+Widget _buttonOfCalculatorBuilder(String number) {
+  return ButtonOfCalculator(text: number);
+}
+
 class _IosCalculatorState extends State<IosCalculator> {
 
   String text = '0';
@@ -36,53 +65,7 @@ class _IosCalculatorState extends State<IosCalculator> {
                 )
               ],
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                ButtonOfCalculator(text: 'AC', color: Color(0xffa5a5a5)),
-                ButtonOfCalculator(text: '+/-', color: Color(0xffa5a5a5)),
-                ButtonOfCalculator(text: '%', color: Color(0xffa5a5a5)),
-                ButtonOfCalculator(text: '/', color: Colors.orange)
-              ],
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                ButtonOfCalculator(text: '7'),
-                ButtonOfCalculator(text: '8'),
-                ButtonOfCalculator(text: '9'),
-                ButtonOfCalculator(text: 'x', color: Colors.orange)
-              ],
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                ButtonOfCalculator(text: '4'),
-                ButtonOfCalculator(text: '5'),
-                ButtonOfCalculator(text: '6'),
-                ButtonOfCalculator(text: '-', color: Colors.orange)
-              ],
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                ButtonOfCalculator(text: '1'),
-                ButtonOfCalculator(text: '2'),
-                ButtonOfCalculator(text: '3'),
-                ButtonOfCalculator(text: '+', color: Colors.orange)
-              ],
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                ButtonOfCalculator(text: '0',
-                    edgeInsets: EdgeInsets.only(
-                        left: 81, top: 20, right: 81, bottom: 20),
-                    shape: StadiumBorder()),
-                ButtonOfCalculator(text: '.'),
-                ButtonOfCalculator(text: '=', color: Colors.orange)
-              ],
-            ),
+            keyPad()
           ],
         ),
       ),
