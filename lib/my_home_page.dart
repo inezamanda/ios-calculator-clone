@@ -3,22 +3,60 @@ import 'package:flutter/material.dart';
 class MyHomePage extends StatelessWidget {
   const MyHomePage({Key? key}) : super(key: key);
 
-  Widget btn(btnText){
-    return MaterialButton(
-      height: 75.0,
-      elevation: 10,
-      shape: CircleBorder(
-        side: BorderSide(color: Colors.transparent),
-      ),
-      color: Colors.orange,
-      padding: EdgeInsets.all(30.0),
-      child: Text(btnText,
-          style: TextStyle(
-              color: Colors.white,
-              fontSize: 30.0
-          )
-      ),
-      onPressed: () {},
+  Widget btn(btnText) {
+    return Container(
+        padding: EdgeInsets.only(bottom: 10.0),
+        child: ElevatedButton (
+            onPressed: (){},
+            child: Text(btnText,
+              style: TextStyle(
+                  fontSize: 30
+              ),
+            ),
+            style: ElevatedButton.styleFrom(
+                primary: Color(0xff333333),
+                padding: EdgeInsets.all(22.0),
+                shape: CircleBorder()
+            )
+        )
+    );
+  }
+
+  Widget btnTop(btnText) {
+    return Container(
+        padding: EdgeInsets.only(bottom: 10.0),
+        child: ElevatedButton (
+            onPressed: (){},
+            child: Text(btnText,
+              style: TextStyle(
+                  fontSize: 30
+              ),
+            ),
+            style: ElevatedButton.styleFrom(
+                primary: Color(0xffa5a5a5),
+                padding: EdgeInsets.all(22.0),
+                shape: CircleBorder()
+            )
+        )
+    );
+  }
+
+  Widget btnRight(btnText) {
+    return Container(
+        padding: EdgeInsets.only(bottom: 10.0),
+        child: ElevatedButton (
+            onPressed: (){},
+            child: Text(btnText,
+              style: TextStyle(
+                  fontSize: 30
+              ),
+            ),
+            style: ElevatedButton.styleFrom(
+                primary: Colors.orange,
+                padding: EdgeInsets.all(22.0),
+                shape: CircleBorder()
+            )
+        )
     );
   }
 
@@ -67,10 +105,10 @@ class MyHomePage extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                btn('AC'),
-                btn('+/-'),
-                btn('%'),
-                btn('/'),
+                btnTop('AC'),
+                btnTop('+/-'),
+                btnTop('%'),
+                btnRight('/'),
               ],),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -78,7 +116,7 @@ class MyHomePage extends StatelessWidget {
                 btn('7'),
                 btn('8'),
                 btn('9'),
-                btn('x'),
+                btnRight('x'),
               ],),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -86,7 +124,7 @@ class MyHomePage extends StatelessWidget {
                 btn('4'),
                 btn('5'),
                 btn('6'),
-                btn('-'),
+                btnRight('-'),
               ],),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -94,14 +132,14 @@ class MyHomePage extends StatelessWidget {
                 btn('1'),
                 btn('2'),
                 btn('3'),
-                btn('+'),
+                btnRight('+'),
               ],),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 btnZero('0'),
                 btn('.'),
-                btn('='),
+                btnRight('='),
               ],
             ),
           ],
@@ -139,114 +177,6 @@ class MyHomePage extends StatelessWidget {
 //   dynamic preOpr = '';
 //
 //
-//   Widget btn(btnText, Color color) {
-//     return Container(
-//         padding: EdgeInsets.only(bottom: 10.0),
-//         child: new RaisedButton(
-//             child: Text(btnText,
-//               style: TextStyle(
-//                   fontSize: 30
-//               ),
-//             ),
-//             onPressed: (){
-//               calculation(btnText);
-//             },
-//             color: color,
-//             padding: EdgeInsets.all(22.0),
-//             shape: CircleBorder()
-//
-//         )
-//     );
-//   }
-//
-//   Widget btnZero(btnText, Color color) {
-//     return Container(
-//         padding: EdgeInsets.only(bottom: 10.0),
-//         child: new RaisedButton(
-//             child: Text(btnText,
-//               style: TextStyle(
-//                   fontSize: 30
-//               ),
-//             ),
-//             onPressed: (){
-//               calculation(btnText);
-//             },
-//             color: color,
-//             padding: EdgeInsets.only(left:81 ,top:20,right:81,bottom: 20),
-//             shape: StadiumBorder()
-//
-//         )
-//     );
-//   }
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     return new Scaffold(
-//       appBar: null,
-//       backgroundColor: Colors.black,
-//       body: Container(
-//         margin: EdgeInsets.only(bottom: 20.0),
-//         child: new Column(
-//           mainAxisAlignment: MainAxisAlignment.end,
-//           children: <Widget>[
-//             Row(children: <Widget>[
-//               Expanded(
-//                 child: Text(
-//                   text,
-//                   style: TextStyle(
-//                     color: Colors.white,
-//                     fontSize: 60.0,
-//                   ),
-//                   textAlign: TextAlign.right,
-//                   maxLines: 1,
-//                 ),
-//               )
-//             ],
-//             ),
-//             Row(
-//               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-//               children: <Widget>[
-//                 btn('C',const Color(0xffa5a5a5)), // AARRGGBB
-//                 btn('+/-',const Color(0xffa5a5a5)),
-//                 btn('%',const Color(0xffa5a5a5)),
-//                 btn('/', Colors.orange),
-//               ],),
-//             Row(
-//               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-//               children: <Widget>[
-//                 btn('7',const Color(0xff333333)),
-//                 btn('8',const Color(0xff333333)),
-//                 btn('9',const Color(0xff333333)),
-//                 btn('x',Colors.orange),
-//               ],),
-//             Row(
-//               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-//               children: <Widget>[
-//                 btn('4',const Color(0xff333333)),
-//                 btn('5',const Color(0xff333333)),
-//                 btn('6',const Color(0xff333333)),
-//                 btn('-',Colors.orange),
-//               ],),
-//             Row(
-//               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-//               children: <Widget>[
-//                 btn('1',const Color(0xff333333)),
-//                 btn('2',const Color(0xff333333)),
-//                 btn('3',const Color(0xff333333)),
-//                 btn('+',Colors.orange),
-//               ],),
-//             Row(
-//               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-//               children: <Widget>[
-//                 btnZero('0',const Color(0xff333333)),
-//                 btn('.',const Color(0xff333333)),
-//                 btn('=',Colors.orange),
-//               ],),
-//           ],
-//         ),
-//       ),
-//     );
-//   }
 //
 //   void calculation(btnText) {
 //
