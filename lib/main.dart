@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'my_home_page.dart';
+import 'counter/counter.dart';
 
 void main() {
   runApp(MyApp());
@@ -16,9 +17,9 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: '',
       theme: ThemeData(
-        primarySwatch: Colors.teal,
+        primarySwatch: Colors.cyan,
       ),
-      home: const IosCalculator()
+      home: CounterScreen()
     );
   }
 }
